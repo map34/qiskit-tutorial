@@ -5,6 +5,22 @@
 
 # Guide for Installation and Setup
 
+## Docker
+
+From the root of the repository:
+
+```bash
+docker-compose -f infra/docker_dev/docker-compose.yml -p qiskit build
+
+docker-compose -f infra/docker_dev/docker-compose.yml -p qiskit up
+```
+
+To run an iPython console:
+
+```bash
+docker-compose -f infra/docker_dev/docker-compose.yml -p qiskit run --rm nbserver bash -c "source activate QISKitenv && ipython"
+```
+
 ## 1. Download the QISKit Tutorials
 
 **Get the tutorials**<BR>

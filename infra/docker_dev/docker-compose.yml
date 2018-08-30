@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  nbserver:
+    build:
+      context: ../../
+      dockerfile: ./infra/docker_dev/Dockerfile_server
+    volumes:
+      - ../../:/usr/src/app:consistent
+    environment:
+      - JUPYTER_PORT=8888
+    ports:
+      - 8888:8888
+    command: bash -c "./infra/scripts/start-server.sh"

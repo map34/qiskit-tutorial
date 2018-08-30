@@ -1,0 +1,22 @@
+FROM ubuntu:18.04
+
+ENV LC_ALL C.UTF-8
+ENV LANG C.UTF-8
+ENV HOME /root
+ENV PATH $HOME/miniconda/bin:$PATH
+
+RUN set -ex && mkdir -p /usr/src/app/backend
+
+WORKDIR /usr/src/app
+
+# -- Adding requirement files
+COPY QISKitenv.yml backend/QISKitenv.yml
+COPY infra/scripts/setup-server.sh backend/setup-server.sh
+COPY infra/scripts/setup-image.sh backend/setup-image.sh
+
+# -- Install apt packages
+RUN backend/setup-image.sh
+
+# -- Install dependencies:
+RUN backend/setup-server.sh
+
